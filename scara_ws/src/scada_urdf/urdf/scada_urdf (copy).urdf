@@ -5,6 +5,8 @@
 <robot
   name="scada_urdf">
   <link
+    name="world"/>
+  <link
     name="base_link">
     <inertial>
       <origin
@@ -44,6 +46,17 @@
       </geometry>
     </collision>
   </link>
+  <joint
+    name="dummy_joint"
+    type="fixed">
+    <origin
+      xyz="0 0 0"
+      rpy="0 0 0" />
+    <parent
+      link="world" />
+    <child
+      link="base_link" />
+  </joint>
   <link
     name="antebrazo">
     <inertial>
