@@ -122,7 +122,7 @@
         <parent link="brazo" />
         <child link="mano" />
         <axis xyz="0 0 1" />
-        <limit lower="-1" upper="1" effort="0" velocity="1" />
+        <limit lower="-1" upper="1" effort="1" velocity="1" />
     </joint>
     <link name="dedo">
         
@@ -197,7 +197,7 @@
     </transmission>
     <gazebo>
         <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
-            <robotNamespace>/</robotNamespace>
+            <robotNamespace>/scara</robotNamespace>
         </plugin>
     </gazebo>
 </robot>

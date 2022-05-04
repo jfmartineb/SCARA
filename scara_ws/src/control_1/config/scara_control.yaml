@@ -1,25 +1,25 @@
-scara:
+scara: 
   joint_state_controller:
-    type: joint_state_controller/JoinStateController
+    type: joint_state_controller/JointStateController
     publish_rate: 50
-  
+
   hombro_position_controller:
-    type: effort_controller/JointTrajectoryController
+    type: effort_controllers/JointTrajectoryController
     joints: [hombro]
     gains:
       hombro: {p: 100.0 , i: 0.05, d: 10.0}
   codo_position_controller:
-    type: effort_controller/JointTrajectoryController
+    type: effort_controllers/JointTrajectoryController
     joints: [codo]
     gains:
       codo: {p: 100.0 , i: 0.05, d: 10.0}
   muneca_position_controller:
-    type: effort_controller/JointTrajectoryController
+    type: effort_controllers/JointTrajectoryController
     joints: [muneca]
     gains:
       muneca: {p: 100.0 , i: 0.05, d: 10.0}
   articulacion_position_controller:
-    type: effort_controller/JointTrajectoryController
+    type: effort_controllers/JointTrajectoryController
     joints: [articulacion]
     gains:
       articulacion: {p: 100.0 , i: 0.05, d: 10.0}

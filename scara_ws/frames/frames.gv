@@ -1,0 +1,14 @@
+digraph G {
+"world" -> "base_link"[label="Broadcaster: /robot_state_publisher\nAverage rate: 10000.000 Hz\nMost recent transform: 0.000 ( 246.125 sec old)\nBuffer length: 0.000 sec\n"];
+"mano" -> "dedo"[label="Broadcaster: /robot_state_publisher\nAverage rate: 10.585 Hz\nMost recent transform: 246.100 ( 0.025 sec old)\nBuffer length: 1.795 sec\n"];
+"antebrazo" -> "brazo"[label="Broadcaster: /robot_state_publisher\nAverage rate: 10.585 Hz\nMost recent transform: 246.100 ( 0.025 sec old)\nBuffer length: 1.795 sec\n"];
+"base_link" -> "antebrazo"[label="Broadcaster: /robot_state_publisher\nAverage rate: 10.585 Hz\nMost recent transform: 246.100 ( 0.025 sec old)\nBuffer length: 1.795 sec\n"];
+edge [style=invis];
+ subgraph cluster_legend { style=bold; color=black; label ="view_frames Result";
+"Recorded at time: 246.125"[ shape=plaintext ] ;
+ }->"world";
+edge [style=invis];
+ subgraph cluster_legend { style=bold; color=black; label ="view_frames Result";
+"Recorded at time: 246.125"[ shape=plaintext ] ;
+ }->"mano";
+}
