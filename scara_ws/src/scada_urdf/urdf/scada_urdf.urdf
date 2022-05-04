@@ -117,12 +117,12 @@
             </geometry>
         </collision>
     </link>
-    <joint name="muneca" type="prismatic">
+    <joint name="muneca" type="fixed">
         <origin xyz="0.37763 0 0.020231" rpy="0 0 0" />
         <parent link="brazo" />
         <child link="mano" />
         <axis xyz="0 0 1" />
-        <limit lower="-1" upper="1" effort="1" velocity="1" />
+       <!-- <limit lower="-1" upper="1" effort="1" velocity="1" />-->
     </joint>
     <link name="dedo">
         
