@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- This URDF was automatically created by SolidWorks to URDF Exporter! Originally created by Stephen Brawner (brawner@gmail.com) 
+     Commit Version: 1.6.0-1-g15f4949  Build Version: 1.6.7594.29634
+     For more information, please see http://wiki.ros.org/sw_urdf_exporter -->
+<robot
+  name="servo_urdf">
+  <link
+    name="base_link">
+    <inertial>
+      <origin
+        xyz="0.0117358828374191 0.006 0.0136429059031342"
+        rpy="0 0 0" />
+      <mass
+        value="0.00758107050268202" />
+      <inertia
+        ixx="5.55801688588521E-07"
+        ixy="5.0426940623003E-24"
+        ixz="-2.52048126365935E-08"
+        iyy="8.23810215563623E-07"
+        iyz="2.07012308250836E-23"
+        izz="4.46540635071146E-07" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://servo_urdf/meshes/base_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://servo_urdf/meshes/base_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <link
+    name="puntero">
+    <inertial>
+      <origin
+        xyz="0.00642596924397514 0 0.00396114262857445"
+        rpy="0 0 0" />
+      <mass
+        value="0.00088335655680429" />
+      <inertia
+        ixx="7.021421250909E-09"
+        ixy="-8.2018563879997E-25"
+        ixz="-2.20570840566851E-10"
+        iyy="4.97349395150619E-08"
+        iyz="-7.13533594824747E-26"
+        izz="5.14715814474346E-08" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://servo_urdf/meshes/puntero.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://servo_urdf/meshes/puntero.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="junta"
+    type="continuous">
+    <origin
+      xyz="0.0174058777578102 0.006 0.0295"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="puntero" />
+    <axis
+      xyz="0 0 1" />
+  </joint>
+</robot>
