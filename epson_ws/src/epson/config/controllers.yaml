@@ -1,0 +1,45 @@
+epson:
+  # Publish all joint states -----------------------------------
+  joint_state_controller:
+    type: joint_state_controller/JointStateController
+    publish_rate: 50
+
+  # Position Controllers ---------------------------------------
+  hombro_position_controller:
+    type: effort_controllers/JointTrajectoryController
+    joints: [hombro]
+    gains:
+      hombro: {p: 0.1, i: 0.0, d: 0.0001}
+  codo_position_controller:
+    type: effort_controllers/JointTrajectoryController
+    joints: [codo]
+    gains:
+      codo: {p: 0.1, i: 0.0, d: 0.0001}
+  muneca_position_controller:
+    type: effort_controllers/JointTrajectoryController
+    joints: [muneca]
+    gains:
+      muneca: {p: 0.1, i: 0.0, d: 0.0001}
+  articulacion_position_controller:
+    type: effort_controllers/JointTrajectoryController
+    joints: [articulacion]
+    gains:
+      articulacion: {p: 0.1, i: 0.0, d: 0.0001}
+
+controller_list:
+  - name: /epson/hombro_position_controller
+    action_ns: "follow_joint_trajectory"
+    type: FollowJointTrajectory
+    joints: ["hombro"]
+  - name: /epson/codo_position_controller
+    action_ns: "follow_joint_trajectory"
+    type: FollowJointTrajectory
+    joints: ["codo"]
+  - name: /epson/muneca_position_controller
+    action_ns: "follow_joint_trajectory"
+    type: FollowJointTrajectory
+    joints: ["muneca"]
+  - name: /epson/articulacion_position_controller
+    action_ns: "follow_joint_trajectory"
+    type: FollowJointTrajectory
+    joints: ["articulacion"]

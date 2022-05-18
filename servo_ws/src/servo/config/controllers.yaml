@@ -9,7 +9,7 @@ servo:
     type: effort_controllers/JointTrajectoryController
     joints: [junta]
     gains:
-      junta: {p: 100.0, i: 0.05, d: 10.0}
+      junta: {p: 0.1, i: 0.0, d: 0.0}
 
 controller_list:
   - name: /servo/junta_position_controller

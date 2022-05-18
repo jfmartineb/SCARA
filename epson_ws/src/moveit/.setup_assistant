@@ -1,0 +1,11 @@
+moveit_setup_assistant_config:
+  URDF:
+    package: epson
+    relative_path: urdf/epson.urdf
+    xacro_args: ""
+  SRDF:
+    relative_path: config/epson.srdf
+  CONFIG:
+    author_name: ares
+    author_email: ares@eafit.edu.co
+    generated_timestamp: 1652906231
