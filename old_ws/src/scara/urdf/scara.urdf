@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- This URDF was automatically created by SolidWorks to URDF Exporter! Originally created by Stephen Brawner (brawner@gmail.com)
+     Commit Version: 1.5.1-0-g916b5db  Build Version: 1.5.7152.31018
+     For more information, please see http://wiki.ros.org/sw_urdf_exporter -->
+<robot name="scara">
+    <link name="world" />
+    <link name="base_link">
+        
+<inertial>
+            <origin xyz="-0.00011095 0.011706 0.22021" rpy="0 0 0" />
+            <mass value="11.63" />
+            <inertia ixx="0.79" ixy="0.04" ixz="0" iyy="0.06" iyz="0" izz="0.83" />
+        </inertial>
+
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <mesh filename="package://scara/meshes/base_link.STL" />
+            </geometry>
+            <material name="">
+                <color rgba="0.79216 0.81961 0.93333 1" />
+            </material>
+        </visual>
+        79
+        <collision>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <mesh filename="package://scara/meshes/base_link.STL" />
+            </geometry>
+        </collision>
+    </link>
+    <joint name="dummy_joint" type="fixed">
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <parent link="world" />
+        <child link="base_link" />
+    </joint>
+    <link name="Link1">
+        
+<inertial>
+            <origin xyz="0.14744 0.035552 -7.4228E-08" rpy="0 0 0" />
+            <mass value="1.6797" />
+            <inertia ixx="0.00" ixy="0.01" ixz="0" iyy="0.06" iyz="0" izz="0.06" />
+        </inertial>
+
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <mesh filename="package://scara/meshes/Link1.STL" />
+            </geometry>
+            <material name="">
+                <color rgba="0.79216 0.81961 0.93333 1" />
+            </material>
+        </visual>
+        <collision>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <mesh filename="package://scara/meshes/Link1.STL" />
+            </geometry>
+        </collision>
+    </link>
+    <joint name="Joint1" type="revolute">
+        <origin xyz="0 0.0625 0.191" rpy="1.5708 0 1.1826" />
+        <parent link="base_link" />
+        <child link="Link1" />
+        <axis xyz="0 1 0" />
+        <limit lower="-1.57" upper="2.5" effort="80" velocity="10" />
+        <dynamics damping="0.7" />
+    </joint>
+    <link name="Link2">
+        
+<inertial>
+            <origin xyz="0.11966 0.1221 7.2579E-06" rpy="0 0 0" />
+            <mass value="7.5355" />
+            <inertia ixx="0.08" ixy="-0.1" ixz="0" iyy="0.27" iyz="0" izz="0.33" />
+        </inertial>
+
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <mesh filename="package://scara/meshes/Link2.STL" />
+            </geometry>
+            <material name="">
+                <color rgba="0.79216 0.81961 0.93333 1" />
+            </material>
+        </visual>
+        <collision>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <mesh filename="package://scara/meshes/Link2.STL" />
+            </geometry>
+        </collision>
+    </link>
+    <joint name="Joint2" type="continuous">
+        <origin xyz="0.325 0.028998 0" rpy="0 0.73996 0" />
+        <parent link="Link1" />
+        <child link="Link2" />
+        <axis xyz="0 1 0" />
+        <limit lower="0" upper="0" effort="80" velocity="10" />
+        <dynamics damping="0.7" />
+    </joint>
+    <link name="Link3">
+        
+<inertial>
+            <origin xyz="-0.0001139 0.15798 3.8177E-05" rpy="0 0 0" />
+            <mass value="0.083171" />
+            <inertia ixx="0.0015219" ixy="-3.524E-08" ixz="-4.2008E-08" iyy="9.0892E-06" iyz="-2.8191E-08" izz="0.0015218" />
+        </inertial>
+
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <mesh filename="package://scara/meshes/Link3.STL" />
+            </geometry>
+            <material name="">
+                <color rgba="0.79216 0.81961 0.93333 1" />
+            </material>
+        </visual>
+        <collision>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <mesh filename="package://scara/meshes/Link3.STL" />
+            </geometry>
+        </collision>
+    </link>
+    <joint name="Joint3" type="prismatic">
+        <origin xyz="0.275 0 0" rpy="3.1416 0.42498 3.1416" />
+        <parent link="Link2" />
+        <child link="Link3" />
+        <axis xyz="0 1 0" />
+        <limit lower="-0.15" upper="0" effort="80" velocity="10" />
+    </joint>
+    
+<transmission name="trans_Joint1">
+        <type>transmission_interface/SimpleTransmission</type>
+        <joint name="Joint1">
+            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+        </joint>
+        <actuator name="Joint1_motor">
+            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+            <mechanicalReduction>1</mechanicalReduction>
+        </actuator>
+    </transmission>
+    <transmission name="trans_Joint2">
+        <type>transmission_interface/SimpleTransmission</type>
+        <joint name="Joint2">
+            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+        </joint>
+        <actuator name="Joint2_motor">
+            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+            <mechanicalReduction>1</mechanicalReduction>
+        </actuator>
+    </transmission>
+    <transmission name="trans_Joint3">
+        <type>transmission_interface/SimpleTransmission</type>
+        <joint name="Joint3">
+            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+        </joint>
+        <actuator name="Joint3_motor">
+            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+            <mechanicalReduction>1</mechanicalReduction>
+        </actuator>
+    </transmission>
+    <gazebo>
+        <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
+            <robotNamespace>/scara</robotNamespace>
+        </plugin>
+    </gazebo>
+</robot>

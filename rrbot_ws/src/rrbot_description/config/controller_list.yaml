@@ -1,0 +1,9 @@
+controller_list:
+  - name: /rrbot/joint1_position_controller
+    action_ns: "follow_joint_trajectory"
+    type: FollowJointTrajectory
+    joints: ["joint1"]
+  - name: /rrbot/joint2_position_controller
+    action_ns: "follow_joint_trajectory"
+    type: FollowJointTrajectory
+    joints: ["joint2"]

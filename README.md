@@ -13,18 +13,40 @@ sudo apt-get install \
 
 sudo apt-get install ros-melodic-ros-control ros-melodic-joint-state-controller ros-melodic-effort-controllers ros-melodic-position-controllers ros-melodic-velocity-controllers ros-melodic-ros-controllers ros-melodic-gazebo-ros ros-melodic-gazebo-ros-control
 
-## Modificar
+## A modificar en el package de moveit
 
-URDF del moveit : [Agregar el Namespace](https://answers.ros.org/question/214712/gazebo-controller-spawner-warning/)
+Hay 4 archivos que deben ser modificados:
 
-```xml
-    <gazebo>
-        <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
-            <robotNamespace>/scara</robotNamespace>
-        </plugin>
-    </gazebo>
-```
+1. `@_moveit_controller_manager.launch.xml`:
 
-## Tene cuidado 
+    Cambiar el archivo de configuración de los controladores.
+
+2. `ros_controllers.launch`:
+
+    Cambiar el archivo de configuración de los controladores.
+    En el nodo "controller_spawner" agregar en namespace ("ns") y los argumentos ("args") de los controladores a crear.
+
+3. `demo_gazebo.launch`:
+
+    En el nodo "joint_state_publisher" agregamos al parámetro "source_list" el namespace.
+
+4.  `sensor_3d.yaml`:
+
+    Borrar todas las lineas y poner esto `sensors: []`
+
+5. Adicionalmente en el urdf que saca MoveIt le ponemos el namespace al robot.
+
+    URDF del moveit : [Agregar el Namespace](https://answers.ros.org/question/214712/gazebo-controller-spawner-warning/)
+
+    ```xml
+        <gazebo>
+            <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
+                <robotNamespace>/scara</robotNamespace>
+            </plugin>
+        </gazebo>
+    ```
+
+
+## Tener cuidado 
 
 - Nombres de los "types" de controladores. 

@@ -1,0 +1,11 @@
+moveit_setup_assistant_config:
+  URDF:
+    package: rrbot_description
+    relative_path: urdf/rrbot.xml
+    xacro_args: ""
+  SRDF:
+    relative_path: config/rrbot.srdf
+  CONFIG:
+    author_name: ares
+    author_email: ares@eafit.edu.co
+    generated_timestamp: 1652893482

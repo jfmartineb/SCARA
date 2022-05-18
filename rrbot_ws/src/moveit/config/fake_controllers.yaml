@@ -1,0 +1,9 @@
+controller_list:
+  - name: fake_rrbot_group_controller
+    type: $(arg fake_execution_type)
+    joints:
+      - joint1
+      - joint2
+initial:  # Define initial robot poses.
+  - group: rrbot_group
+    pose: init

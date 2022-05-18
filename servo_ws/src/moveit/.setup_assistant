@@ -1,0 +1,11 @@
+moveit_setup_assistant_config:
+  URDF:
+    package: servo
+    relative_path: urdf/servo.urdf
+    xacro_args: ""
+  SRDF:
+    relative_path: config/servo.srdf
+  CONFIG:
+    author_name: ares
+    author_email: ares@eafit.edu.co
+    generated_timestamp: 1652897813
