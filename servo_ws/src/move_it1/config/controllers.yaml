@@ -1,0 +1,5 @@
+controller_list:
+  - name: /servo_urdf/junta/position/controller
+    action_ns: "follow_joint_trajectory"
+    type: FollowJointTrajectory
+    joints: [junta]

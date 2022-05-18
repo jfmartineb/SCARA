@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<launch>
+
+  <!-- Load joint controller configurations from YAML file to parameter server -->
+  <rosparam file="$(find move_it1)/config/ros_controllers.yaml" command="load"/>
+  <rosparam file="$(find controlservo)/config/servo_controls.yaml" command="load"/>
+
+  <!-- Load the controllers -->
+  <node name="controller_spawner" pkg="controller_manager" type="spawner" respawn="false"
+    output="screen" ns="/servo_urdf" args="joint_state_controller
+                                           junta_position_controller"/>
+
+</launch>

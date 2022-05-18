@@ -1,0 +1,8 @@
+controller_list:
+  - name: fake_servo_urdf_group_controller
+    type: $(arg fake_execution_type)
+    joints:
+      - junta
+initial:  # Define initial robot poses.
+  - group: servo_urdf_group
+    pose: centro
