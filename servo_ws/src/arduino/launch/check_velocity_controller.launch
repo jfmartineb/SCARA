@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<launch>
+    
+  <rosparam file="$(find arduino)/config/controllers.yaml"    command="load"/>
+  <rosparam file="$(find arduino)/config/joint_limits.yaml"   command="load"/>
+
+  <param name="robot_description" textfile="$(find servo)/urdf/servo.urdf" />
+
+  <node name="robot_hardware_interface" pkg="arduino" type="arduino_hardware_interface"     output="screen"/>
+  <node name="robot_action_server"      pkg="arduino" type="joints_receive_from_arduino.py" output="screen"/> 
+  <node name="robot_state_publisher"    pkg="robot_state_publisher" type="robot_state_publisher" />
+
+  <node name="rviz" pkg="rviz" type="rviz" args="-d $(find servo)/urdf.rviz"/>
+    
+  <node name="controller_spawner" pkg="controller_manager" type="spawner" respawn="false" output="screen"
+    args="
+      /servo/joints_update
+      /servo/junta_velocity_controller
+    "/>
+</launch>
