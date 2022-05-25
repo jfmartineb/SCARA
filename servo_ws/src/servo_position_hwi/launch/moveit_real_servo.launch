@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<launch>
+
+  <!-- By default, we are not in debug mode -->
+  <arg name="debug" default="false" />
+  <!-- By default, we won't load or override the robot_description -->
+  <arg name="load_robot_description" default="false"/>
+
+  <rosparam file="$(find servo_position_hwi)/config/controllers.yaml"    command="load"/>
+  <rosparam file="$(find servo_position_hwi)/config/joint_limits.yaml"   command="load"/>
+   
+  <param name="robot_description" textfile="$(find servo)/urdf/servo.urdf" />
+   
+  <node name="robot_hardware_interface" pkg="servo_position_hwi"    type="servo_position_hwi_node" output="log"/>
+  <node name="robot_state_publisher"    pkg="robot_state_publisher" type="robot_state_publisher" />
+    
+  <node name="controller_spawner" pkg="controller_manager" type="spawner" respawn="false" output="log"  
+    args="
+      /servo/joints_update
+      /servo/junta_trajectory_controller
+    "/>
+
+    <node name="arduino" pkg="rosserial_python" type="serial_node.py" >
+        <param name="port" value="/dev/ttyACM0" />
+    </node>
+
+    <!-- Run the main MoveIt! executable without trajectory execution (we do not have controllers configured by default) -->
+  <include file="$(find moveit)/launch/move_group.launch">
+    <arg name="allow_trajectory_execution" value="true"/>
+    <arg name="fake_execution" value="false"/>
+    <arg name="info" value="true"/>
+    <arg name="debug" value="$(arg debug)"/>
+    <arg name="load_robot_description" value="$(arg load_robot_description)"/>
+  </include>
+
+  <!-- Run Rviz and load the default config to see the state of the move_group node -->
+  <include file="$(find moveit)/launch/moveit_rviz.launch">
+    <arg name="rviz_config" value="$(find moveit)/launch/moveit.rviz"/>
+    <arg name="debug" value="$(arg debug)"/>
+  </include>
+
+</launch>

@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<launch>
+    
+  <rosparam file="$(find servo_control)/config/controllers.yaml"    command="load"/>
+  <rosparam file="$(find servo_control)/config/joint_limits.yaml"   command="load"/>
+   
+  <param name="robot_description" textfile="$(find servo)/urdf/servo.urdf" />
+   
+  <node name="robot_hardware_interface" pkg="servo_control"         type="servo_control_node"     output="screen"/>
+  <node name="robot_state_publisher"    pkg="robot_state_publisher" type="robot_state_publisher" />
+  
+  <node name="rviz" pkg="rviz" type="rviz" args="-d $(find servo)/urdf.rviz"/>
+    
+  <node name="controller_spawner" pkg="controller_manager" type="spawner" respawn="false" output="screen"  
+    args="
+      /servo/joints_update
+      /servo/junta_position_controller
+    "/>
+
+</launch>

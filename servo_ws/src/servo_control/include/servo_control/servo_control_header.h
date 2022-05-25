@@ -1,3 +1,4 @@
+#include <controller_manager/controller_manager.h>
 #include <hardware_interface/joint_state_interface.h>
 #include <hardware_interface/joint_command_interface.h>
 #include <hardware_interface/robot_hw.h>
@@ -5,11 +6,9 @@
 #include <joint_limits_interface/joint_limits_interface.h>
 #include <joint_limits_interface/joint_limits_rosparam.h>
 #include <joint_limits_interface/joint_limits_urdf.h>
-#include <controller_manager/controller_manager.h>
 #include <boost/scoped_ptr.hpp>
 #include <ros/ros.h>
 #include <std_msgs/Float32MultiArray.h>
-#include <arduino/Floats_array.h>
 #include <angles/angles.h>
 
 class ROBOTHardwareInterface : public hardware_interface::RobotHW 
@@ -22,16 +21,13 @@ class ROBOTHardwareInterface : public hardware_interface::RobotHW
         void read();
         void write(ros::Duration elapsed_time);
         ros::Publisher pub;
-        ros::ServiceClient client;
         std_msgs::Float32MultiArray joints_pub;
-        arduino::Floats_array joint_read;
         
     protected:
         hardware_interface::JointStateInterface     joint_state_interface_;
         hardware_interface::PositionJointInterface  position_joint_interface_;
         hardware_interface::EffortJointInterface    effort_joint_interface_;
 
-        
         joint_limits_interface::EffortJointSaturationInterface effortJointSaturationInterface;
         
         int num_joints_;

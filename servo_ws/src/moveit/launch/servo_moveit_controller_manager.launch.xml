@@ -3,5 +3,5 @@
   <param name="moveit_controller_manager" value="moveit_simple_controller_manager/MoveItSimpleControllerManager" />
 
   <!-- loads controller list to the param server -->
-  <rosparam file="$(find servo)/config/controllers.yaml"/>
+  <rosparam file="$(find servo_position_hwi)/config/controllers.yaml"/>
 </launch>

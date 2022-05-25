@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<launch>
+
+  <rosparam file="$(find servo_position_hwi)/config/controllers.yaml"    command="load"/>
+  <rosparam file="$(find servo_position_hwi)/config/joint_limits.yaml"   command="load"/>
+   
+  <param name="robot_description" textfile="$(find servo)/urdf/servo.urdf" />
+   
+  <node name="robot_hardware_interface" pkg="servo_position_hwi"    type="servo_position_hwi_node"     output="screen"/>
+  <node name="robot_state_publisher"    pkg="robot_state_publisher" type="robot_state_publisher" />
+  
+  <node name="rviz" pkg="rviz" type="rviz" args="-d $(find servo)/urdf.rviz"/>
+    
+  <node name="controller_spawner" pkg="controller_manager" type="spawner" respawn="false" output="screen"  
+    args="
+      /servo/joints_update
+      /servo/junta_position_controller
+    "/>
+
+    <node name="arduino" pkg="rosserial_python" type="serial_node.py" output="screen">
+        <param name="port" value="/dev/ttyACM0" />
+    </node>
+
+</launch>
