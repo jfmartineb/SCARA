@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<launch>
+
+  <arg name="visual" default="true" />
+
+  <rosparam file="$(find scara_hardware)/config/controllers.yaml"    command="load"/>
+  <rosparam file="$(find scara_hardware)/config/joint_limits.yaml"   command="load"/>
+   
+  <param name="robot_description" textfile="$(find epson)/urdf/epson.urdf" />
+   
+  <node name="robot_hardware_interface" pkg="scara_hardware"    type="scara_hardware_node" />
+  <node name="robot_state_publisher"    pkg="robot_state_publisher" type="robot_state_publisher" />
+  
+  <group if="$(arg visual)">
+    <node name="rviz" pkg="rviz" type="rviz" args="-d $(find epson)/urdf.rviz"/>
+  </group>
+    
+  <node name="controller_spawner" pkg="controller_manager" type="spawner" respawn="false" output="screen"  
+    args="
+      /scara/joints_update
+      /scara/articulacion_trajectory_controller
+      /scara/muneca_trajectory_controller
+      /scara/codo_trajectory_controller
+      /scara/hombro_trajectory_controller
+    "/>
+
+  <node name="arduino" pkg="scara_hardware" type="scara_serial.py" output="screen">
+      <param name="port" value="/dev/ttyACM0" />
+  </node>
+
+</launch>

@@ -1,0 +1,11 @@
+controller_list:
+  - name: fake_chain_group_controller
+    type: $(arg fake_execution_type)
+    joints:
+      - hombro
+      - codo
+      - muneca
+      - articulacion
+initial:  # Define initial robot poses.
+  - group: chain_group
+    pose: izquierda
