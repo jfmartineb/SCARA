@@ -58,7 +58,8 @@
         </collision>
     </link>
     <joint name="hombro" type="continuous">
-        <origin xyz="0 0 0.5925" rpy="0 0 0.55607" />
+        <!--<origin xyz="0 0 0.5925" rpy="0 0 0.55607" />-->
+        <origin xyz="0 0 0.5925" rpy="0 0 0" />
         <parent link="base_link" />
         <child link="antebrazo" />
         <axis xyz="0 0 1" />
@@ -88,7 +89,8 @@
         </collision>
     </link>
     <joint name="codo" type="continuous">
-        <origin xyz="0.4025 0 0" rpy="0 0 2.4099" />
+        <!--<origin xyz="0.4025 0 0" rpy="0 0 2.4099" /> -->
+        <origin xyz="0.4025 0 0" rpy="0 0 0" /> 
         <parent link="antebrazo" />
         <child link="brazo" />
         <axis xyz="0 0 1" />
@@ -117,12 +119,12 @@
             </geometry>
         </collision>
     </link>
-    <joint name="muneca" type="prismatic">
+    <joint name="articulacion" type="prismatic">
         <origin xyz="0.37763 0 0.020231" rpy="0 0 0" />
         <parent link="brazo" />
         <child link="mano" />
         <axis xyz="0 0 1" />
-        <limit lower="0" upper="0.20" effort="80" velocity="1" />
+        <limit lower="0" upper="0.15" effort="80" velocity="1" />
     </joint>
     <link name="dedo">
         
@@ -148,7 +150,7 @@
             </geometry>
         </collision>
     </link>
-    <joint name="articulacion" type="continuous">
+    <joint name="muneca" type="continuous">
         <origin xyz="0 0 0" rpy="0 0 0" />
         <parent link="mano" />
         <child link="dedo" />
@@ -175,22 +177,22 @@
             <mechanicalReduction>1</mechanicalReduction>
         </actuator>
     </transmission>
-    <transmission name="trans_muneca">
-        <type>transmission_interface/SimpleTransmission</type>
-        <joint name="muneca">
-            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
-        </joint>
-        <actuator name="muneca_motor">
-            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
-            <mechanicalReduction>1</mechanicalReduction>
-        </actuator>
-    </transmission>
     <transmission name="trans_articulacion">
         <type>transmission_interface/SimpleTransmission</type>
         <joint name="articulacion">
             <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
         </joint>
         <actuator name="articulacion_motor">
+            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+            <mechanicalReduction>1</mechanicalReduction>
+        </actuator>
+    </transmission>
+    <transmission name="trans_muneca">
+        <type>transmission_interface/SimpleTransmission</type>
+        <joint name="muneca">
+            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+        </joint>
+        <actuator name="muneca_motor">
             <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
             <mechanicalReduction>1</mechanicalReduction>
         </actuator>

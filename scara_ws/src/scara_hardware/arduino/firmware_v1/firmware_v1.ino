@@ -86,7 +86,7 @@ void timed_loop() {
   if (DedoCount >= DedoPeriod && DedoPeriod > 0) {
     DedoOut = !DedoOut;
     DedoCount = 0;
-    digitalWrite(DedoDirec, !DedoDir);
+    digitalWrite(DedoDirec, DedoDir);
     digitalWrite(DedoPulso, DedoOut);
     DedoPosition = DedoPosition + DedoDir * 1 - !DedoDir * 1;
   }
@@ -106,7 +106,7 @@ void timed_loop() {
   if (CodoCount >= CodoPeriod && CodoPeriod > 0) {
     CodoOut = !CodoOut;
     CodoCount = 0;
-    digitalWrite(CodoDirec, CodoDir);
+    digitalWrite(CodoDirec, !CodoDir);
     digitalWrite(CodoPulso, CodoOut);
     CodoPosition = CodoPosition + CodoDir * 1 - !CodoDir * 1;
   }
@@ -130,6 +130,7 @@ void setup_robot() {
   pinMode(DedoDirec, OUTPUT);
 
   DedoPeriod = 1;
+  DedoDir = true;
   while (!digitalRead(DedoSensor)) {}
   DedoPosition = 0;
   DedoPeriod = 0;
@@ -146,6 +147,7 @@ void setup_robot() {
   pinMode(CodoDirec, OUTPUT);
 
   CodoPeriod = 10;
+  CodoDir = true;
   while (!digitalRead(CodoSensor)) {}
   CodoPosition = 0;
   CodoPeriod = 0;

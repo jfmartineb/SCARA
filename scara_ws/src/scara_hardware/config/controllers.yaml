@@ -8,13 +8,13 @@ scara:
     articulacion_position_controller:
       type: velocity_controllers/JointPositionController
       joint: articulacion
-      pid: {p: 100, i: 0, d: 0, i_clamp_min: -130.0, i_clamp_max: 130, antiwindup: True}
+      pid: {p: 1, i: 0, d: 0, i_clamp_min: -130.0, i_clamp_max: 130, antiwindup: True}
 
     articulacion_trajectory_controller:
       type: velocity_controllers/JointTrajectoryController
       joints: [articulacion]
       gains:
-        articulacion: {p: 100, i: 0, d: 0, i_clamp_min: -130.0, i_clamp_max: 130, antiwindup: True}
+        articulacion: {p: 1, i: 0, d: 0, i_clamp_min: -130.0, i_clamp_max: 130, antiwindup: True}
 
     # muneca Controllers ---------------------------------------
     muneca_position_controller:
@@ -38,7 +38,7 @@ scara:
       type: velocity_controllers/JointTrajectoryController
       joints: [codo]
       gains:
-        codo: {p: 10, i: 0, d: 0, i_clamp_min: -130.0, i_clamp_max: 130, antiwindup: True}    
+        codo: {p: 1, i: 0, d: 0, i_clamp_min: -130.0, i_clamp_max: 130, antiwindup: True}    
 
     # hombro Controllers ---------------------------------------
     hombro_position_controller:
